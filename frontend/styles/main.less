@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'SF UI Display Black';
+  src: url('../fonts/SFUIDisplay-Black.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Black.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap; 
+}
+
+@font-face {
+  font-family: 'SF UI Display Light';
+  src: url('../fonts/SFUIDisplay-Light.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display Medium';
+  src: url('../fonts/SFUIDisplay-Medium.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF UI Display Regular';
+  src: url('../fonts/SFUIDisplay-Regular.woff2') format('woff2'),
+      url('../fonts/SFUIDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html{
+  font-family: 'SF UI Display Regular';
+}
+
+body{
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0
+}
+
+.font-xxl{
+  font-size: 48.83px;
+}
+
+.font-xl {
+  font-size: 39.06px;
+}
+
+.font-l {
+  font-size: 31.25px;
+}
+
+.font-m {
+  font-size: 25px;
+}
+
+.font-xm   {
+  font-size: 20px;
+}
+
+.font-normal {
+  font-size: 16px;
+}
+
+.font-s {
+  font-size: 12.8px;
+}
+
+.font-xs {
+  font-size: 10.24px;
+}
+
+.font-xxs {
+  font-size: 8.19px;
+}
+
+.ml-auto{
+  margin-left: auto;
+}
+
+.need_help{
+  cursor: pointer;
+}
+
+.cvv_dialog{
+  background-color: white;
+  position: absolute;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.hint_text{
+  color: #444;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 16px;
+  border-radius: 0 0 4px 4px;
+}
+
+.hint_image{
+  border-radius:4px 4px 0 0;
+}
+
+.hint_image img{
+  width: 100%;
+    height: auto;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -o-object-position: center;
+    object-position: center;
+    pointer-events: none;
+    border-radius: 4px 4px 0 0;
+}
+
+.cvv_dialog button{
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    height: 17px;
+    width: 17px;
+    font-size: 12px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    line-height: 14px;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    color: #222;
+    background: transparent;
+    outline: none;
+}
+
+.cvv_dialog button:hover{
+  background: #fc635d;
+  color: #fff;
+}
