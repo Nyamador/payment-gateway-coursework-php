@@ -12,15 +12,15 @@
             $this->table = $table;
         }
 
-        public function findAll($uid){}
+        abstract public function findAll($uid);
 
-        public function find($id){}
+        abstract public function find($id);
 
-        public function insert($data){}
+        abstract public function insert($data);
         
-        public function update($id, $data){}
+        abstract public function update($id, $data);
 
-        public function delete($id){}
+        abstract public function delete($id);
     
     }
 
