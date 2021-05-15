@@ -10,6 +10,6 @@
                 $this->userID = $userId;
         }
 
-        public function handleRequest(){}
+        abstract public function handleRequest();
     }
 ?>

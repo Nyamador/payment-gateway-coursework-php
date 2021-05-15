@@ -60,6 +60,7 @@ const CardForm = () => {
         const ccNumber = event.target.value
 
         ccNumber.length > 16 ? () => setCardNumber(cc_format(ccNumber.slice(0,19))) : setCardNumber(cc_format(ccNumber))
+        
 
         // setCardIssuer(getCreditCardNameByNumber(ccNumber))
         // if ( ccNumber.charAt(0) == 4  ) {
