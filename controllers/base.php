@@ -1,8 +1,8 @@
 <?php
     abstract class BaseController{
-        private $model;
-        private $requestMethod;
-        private $userId;
+        public $model;
+        public $requestMethod;
+        public $userId;
 
         public function __construct($model, $requestMethod, $userId) {
                 $this->model = $model;
