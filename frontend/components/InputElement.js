@@ -1,4 +1,6 @@
 import React from 'react';
+import { usePaymentInputs } from 'react-payment-inputs';
+import images from 'react-payment-inputs/images';
 import styled from 'styled-components'
 
 import FlexColumn from './FlexColumn'
@@ -28,9 +30,10 @@ const Input = styled.input`
     transition: all 4s;
 `
 
-const InputElement = ({type, value, required, placeholder, id, label, containerStyle, changeHandler, hasError}) => {
+const InputElement = ({type, value, required, placeholder, id, label, containerStyle, changeHandler, hasError, name}) => {
 
     const [isCvvDialogOpen, setIsCvvDialogOpen] = React.useState(false)
+    const { meta, getCardNumberProps, getExpiryDateProps, getCVCProps } = usePaymentInputs();
 
     return (
         <>
@@ -39,7 +42,10 @@ const InputElement = ({type, value, required, placeholder, id, label, containerS
                 <Label htmlFor={id} className="font-s">{label}</Label>
                 {label === "CVV" && <div className="font-xs ml-auto need_help" onClick={() => isCvvDialogOpen ? setIsCvvDialogOpen(false) : setIsCvvDialogOpen(true)}>HELP?</div>}
             </FlexRow>
-            <Input className={isCvvDialogOpen && "cvv_input"} type={type} value={value} required={!required ? true : required} placeholder={placeholder} id={id} onChange={(event) => changeHandler(event)}/>
+            <Input name={name} className={isCvvDialogOpen && "cvv_input"} type={type} value={value} required={!required ? true : required} placeholder={placeholder} id={id} 
+            {...name === "cc_expiry" && {...getExpiryDateProps({ onChange: changeHandler })} }
+            {...name === "cvv" && {...getCVCProps({ onChange: changeHandler })} }
+            />
             
             
             { isCvvDialogOpen &&
@@ -64,23 +70,16 @@ export default InputElement;
 
 
 export const CardInputElement = ({type, value, required, placeholder, id, label, containerStyle, changeHandler, hasError, issuer_logo}) => {
-    
-    const get_issuer_logo = (issuer_name) => {
-        if(issuer_name === "Mastercard"){
-            return mastercard
-        }else if(issuer_name === "Visa"){
-            return visacard
-        }else if (issuer_name === "American Express"){
-            return amex
-        }
-    }
+
+    const { meta, getCardNumberProps, getCardImageProps } = usePaymentInputs();
 
     return (
         <InputWrapper style={containerStyle} error={hasError}>
             <Label htmlFor={id} className="font-s">{label}</Label>
             <FlexRow>
-                <Input style={{width: '95%'}} type={type} value={value} required={!required ? true : required} placeholder={placeholder} id={id} onChange={(event) => changeHandler(event)}/>
-                <img src={get_issuer_logo(issuer_logo)} height="20px"/>
+                <Input {...getCardNumberProps({onChange: changeHandler })} style={{width: '95%'}} type={type} value={value} required={!required ? true : required} placeholder={placeholder} id={id}/>
+                <svg {...getCardImageProps({ images })} />
+                {/* <img src={get_issuer_logo(issuer_logo)} height="20px"/> */}
             </FlexRow>
         </InputWrapper>
     );
