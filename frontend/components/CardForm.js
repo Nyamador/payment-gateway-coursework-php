@@ -16,9 +16,9 @@ const MonthCvvWrapper = styled(FlexRow)`
 const LoadingBar = styled(FlexRow)`
     background: linear-gradient(
     180deg
-    ,#44b669 0,#40ad57);
+    ,#50bef9 0,#0793e0);
         bckground: #44b669;
-        border-color: #29b263;
+        border-color: #44b6f4;
     border-radius: 8px;
     width: fit-content;
     border-radius: 50%;
@@ -57,21 +57,6 @@ const CardForm = () => {
 
     // useEffect(fetchData(), [])
 
-    const cc_format = (value) => {
-        let v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
-        let matches = v.match(/\d{4,16}/g);
-        let match = matches && matches[0] || ''
-        let parts = []
-        for (let i=0, len=match.length; i<len; i+=4) {
-          parts.push(match.substring(i, i+4))
-        }
-        if (parts.length) {
-          return parts.join(' ')
-        } else {
-          return value
-        }
-      }
-      
     const handleCreditCardInputChange = (event) => { 
         setCardNumber(event.target.value);
     }
