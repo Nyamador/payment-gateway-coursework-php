@@ -2,12 +2,12 @@
     abstract class BaseController{
         public $model;
         public $requestMethod;
-        public $userId;
+        public $user_token;
 
-        public function __construct($model, $requestMethod, $userId) {
+        public function __construct($model, $requestMethod, $user_token) {
                 $this->model = $model;
                 $this->requestMethod = $requestMethod;
-                $this->userID = $userId;
+                $this->user_token = $user_token;
         }
 
         abstract public function handleRequest();
