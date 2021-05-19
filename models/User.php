@@ -1,10 +1,9 @@
 <?php
-
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);  
 
-    require_once __DIR__."/models/base.php";
+    require_once __DIR__."/base.php";
 
     class User extends BaseModel {
 
@@ -13,27 +12,35 @@
             parent::__construct($PDOConnection, "Users");
         }
 
-        public function exists($email){
+        public function find($email){
             $sql = "SELECT * FROM {$this->table} WHERE email=?";
-            $prepaparedQuery = $this->connection->prepare($sql);
-            $result = $prepaparedQuery->execute(array($email))->fetch();
-            if(isset($result->email)) return true;
-            return false;
+            $preparedQuery = $this->connection->prepare($sql);
+            $preparedQuery->execute(array($email));
+            $result = $preparedQuery->fetch();
+            return $result;            
+        }        
+
+        public function exists($email){
+            $data = $this->find($email);
+            if (isset($data->email)) {
+                return true;
+            }else{
+                return false;
+            }
 
         }
 
         public function insert($data){
-            $sql = "INSERT INTO {$this->table} (email, password)"."VALUES(?,?)";
+            $sql = "INSERT INTO {$this->table} (email, password, api_key)"."VALUES(?,?,?)";
             $prepaparedQuery = $this->connection->prepare($sql);
             $prepaparedQuery->execute(array(
                 $data['email'],
                 $data['password'],
+                bin2hex(openssl_random_pseudo_bytes(20)),
             ));
         }
 
         public function findAll($uid){}
-
-        public function find($id){}
         
         public function update($id, $data){}
 

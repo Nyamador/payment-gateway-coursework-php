@@ -19,8 +19,8 @@
     <main class="h-screen w-full">
             <section class="w-5/12 h-full flex flex-col justify-center m-auto">
                 <div class="bg-white rounded-md shadow-sm p-8">
-                    <form method="POST" action="">
-                        <h1 class="mb-4 font-bold text-2xl">Sign Up</h1>
+                    <form method="POST" action="/dashboard/signin.php">
+                        <h1 class="mb-4 font-bold text-2xl">Sign In</h1>
                         <div class="flex flex-col mb-10">
                             <label for="email" class="mb-4">Email</label>
                             <input type="email" name="email" id="email" class="bg-gray-100 rounded-md p-2 focus:ring focus:ring-blue-400 outline-none" placeholder="Email" autocomplete="false" required>

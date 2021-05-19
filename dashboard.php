@@ -3,12 +3,19 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);  
 
+    
+    session_start();
+    require_once __DIR__."/models/User.php";
+    require_once __DIR__."/db/db_config.php";
+    
     if(!isset($_SESSION['isAuthenticated'])){
-        // header('Location: signin.php');
+        header('Location: signin.php');
     }
+    $userModel = new User(PDOConnection::instance());
+    $userData = $userModel->find($_SESSION['email']);
 
     // Configuration settings for the key
-    echo "cu_pay".bin2hex(openssl_random_pseudo_bytes(20));
+    
     
 ?>
 <!DOCTYPE html>
@@ -26,23 +33,62 @@
 <body>
 
     <main class="w-full h-screen">
-        <section class="w-5/12 m-auto">
+        <section class="w-5/12 h-full m-auto flex flex-col justify-center">
                 <div class="bg-white shadow-sm rounded-sm p-8">
-                    <div class="flex flex-row mb-4">
+                    <div class="flex flex-row mb-4 items-center">
                         <h1 class="font-bold text-xs">API CREDENTIALS</h1>
                         <div class="ml-auto">
-                                <a href="" class="p-2 border border-black rounded-md text-xs font-bold">
+                                <a href="/logout.php" class="p-2 border border-black rounded-md text-xs font-bold">
                                     Logout
                                 </a>
                         </div>
                     </div>
 
-                    <hr>
+                    <hr class="mb-8">
 
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error harum aliquid autem ducimus. Maxime similique repudiandae, quod dolorem assumenda deleniti!</p>
+
+                    <div>
+                        <p class="font-bold text-xs mb-2">API KEY</p>
+                        <div class="bg-gray-100 rounded-md p-2 mb-4">
+                                <p class="apiKey"><?php echo "cpy_pub_".$userData['api_key']; ?>
+                            </p>
+                        </div>
+
+                        <div class="flex flex-row items-center">
+                            <div id="copy" class="w-3/12 p-2 rounded-lg shadow-lg text-center uppercase cursor-pointer">
+                                Copy Key
+                            </div>
+
+                            <div class="ml-auto text-green-300 text-sm hidden" id="success-text">
+                                API KEY COPIED SUCCESSFULLY!
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
         </section>
     </main>
     
+    <script>
+        const copyBtn = document.querySelector('#copy');
+        const apiKey = document.querySelector(".apiKey");
+        const successText = document.querySelector("#success-text");
+
+        function copyApiKeyToClipBoard(){
+           navigator.clipboard.writeText(apiKey.innerText)
+        .then(() => console.log("Done copying"));
+        }
+
+        function handleAPIKeyCopy(){
+            copyApiKeyToClipBoard();
+            successText.classList.replace("hidden", "block");
+            setTimeout(() => {
+                successText.classList.replace("block", "hidden");
+            }, 3000);
+        }
+
+        copyBtn.addEventListener('click', handleAPIKeyCopy);
+
+    </script>
 </body>
 </html>

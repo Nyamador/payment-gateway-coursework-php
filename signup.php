@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_SESSION['isAuthenticated'])){
+    if(isset($_SESSION['isAuthenticated'])){
         header('Location: dashboard.php');
     }
 ?>
@@ -19,12 +19,12 @@
     <main class="h-screen w-full">
             <section class="w-5/12 h-full flex flex-col justify-center m-auto">
                 <div class="bg-white rounded-md shadow-sm p-8">
-                    <form method="POST" action="">
+                    <form method="POST" action="/dashboard/signup.php">
                         <h1 class="mb-4 font-bold text-2xl">Sign Up</h1>
 
                         <!-- Form Errors -->
                         <div class="bg-red-100 p-2 rounded-md mb-2 mt-2">
-                                <p class="text-red-500">Username or password incorrect</p>
+                                <p class="text-red-500"><?php if(isset($_GET['error'])){ echo $_GET['error'];}?></p>
                         </div>
 
                         <div class="flex flex-col mb-10">
@@ -37,7 +37,7 @@
                             <input type="password" name="password" id="password" class="bg-gray-100 rounded-md  outline-none  p-2 focus:ring focus:ring-blue-400" placeholder="Password" required>
                         </div>  
 
-                        <button class="outline-none rounded-md p-2 text-center mt-8 bg-blue-500 text-white w-full">
+                        <button type="submit" value="signup" class="outline-none rounded-md p-2 text-center mt-8 bg-blue-500 text-white w-full">
                             Sign Up
                         </button>                      
                     </form>

@@ -1,6 +1,6 @@
 <?php
 
-    require_once __DIR__."/db/db_config.php";
+    require_once __DIR__."/../db/db_config.php";
 
     abstract class BaseModel{
         protected $connection;
