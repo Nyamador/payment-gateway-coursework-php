@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);  
 
-    require_once __DIR__."/models/base.php";
+    require_once __DIR__."/base.php";
 
     class Transaction extends BaseModel{
 
@@ -24,7 +24,7 @@
                 $data['external_id'],
                 $data['customer_name'],
                 $data['customer_email'],
-                $data['customer_number'],
+                $data['customer_mobile'],
                 $data['payment_method'],
                 $data['status'],
             ));            

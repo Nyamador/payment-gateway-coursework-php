@@ -20,12 +20,20 @@
             return $result;            
         }        
 
+        public function findByToken($token){
+            $sql = "SELECT * FROM {$this->table} WHERE api_key=?";
+            $preparedQuery = $this->connection->prepare($sql);
+            $preparedQuery->execute(array($token));
+            $result = $preparedQuery->fetch();
+            return $result;               
+        }
+
         public function exists($email){
             $data = $this->find($email);
             if (isset($data->email)) {
-                return true;
+                return TRUE;
             }else{
-                return false;
+                return FALSE;
             }
 
         }

@@ -9,10 +9,10 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $userModel = new User(PDOConnection::instance());   
-        if($userModel->exists($_POST["email"])){
+        if($userModel->exists($_POST["email"]) === TRUE){
             // start a session and append users details to session
             $userData = $userModel->find($_POST["email"]);
-            if(password_verify($_POST['password'], $userData->password)){
+            if(password_verify($_POST['password'], $userData->password) === TRUE){
                 session_start();
                 $_SESSION['email'] = $userData->email;
                 $_SESSION['uid'] = $userData->id;

@@ -2,6 +2,8 @@
     if(isset($_SESSION['isAuthenticated'])){
         header('Location: dashboard.php');
     }
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +22,7 @@
             <section class="w-5/12 h-full flex flex-col justify-center m-auto">
                 <div class="bg-white rounded-md shadow-sm p-8">
                     <form method="POST" action="/dashboard/signin.php">
-                        <h1 class="mb-4 font-bold text-2xl">Sign In</h1>
+                        <h1 class="mb-4 font-bold text-2xl">Sign In <?php var_dump(password_verify("24012001", '$2y$10$fVBDaKLFQvxbgT.OmM9hS.MOd9NnNEyOdVmTb/.rstTjzMXPUWxRy'));?></h1>
                         <div class="flex flex-col mb-10">
                             <label for="email" class="mb-4">Email</label>
                             <input type="email" name="email" id="email" class="bg-gray-100 rounded-md p-2 focus:ring focus:ring-blue-400 outline-none" placeholder="Email" autocomplete="false" required>
@@ -32,7 +34,7 @@
                         </div>  
 
                         <button class="rounded-md p-2 text-center mt-8 bg-blue-500 text-white w-full">
-                            Sign In
+                            Sign In 
                         </button>                      
                     </form>
                 </div>

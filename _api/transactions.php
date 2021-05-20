@@ -6,5 +6,8 @@
 
     require_once __DIR__."/../controllers/TransactionController.php";
     
+    $headers = getallheaders();
+    $transactionController = new TransactionController($_SERVER['REQUEST_METHOD'], $headers['Authorization']);
+    $transactionController->handleRequest();
 
 ?>

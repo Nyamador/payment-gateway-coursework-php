@@ -50,7 +50,7 @@
                     <div>
                         <p class="font-bold text-xs mb-2">API KEY</p>
                         <div class="bg-gray-100 rounded-md p-2 mb-4">
-                                <p class="apiKey"><?php echo "cpy_pub_".$userData['api_key']; ?>
+                                <p class="apiKey"><?php echo $userData['api_key']; ?>
                             </p>
                         </div>
 

@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);  
 
-    require_once __DIR__."/models/base.php";
+    require_once __DIR__."/base.php";
 
 
     class LinkModel extends BaseModel {
@@ -21,24 +21,35 @@
         }
 
         public function find($id){
-            $sql = "SELECT * FROM {$this->table} WHERE uuid={$id}"."VALUES(?)";
-            $prepaparedQuery = $this->connection->prepare($sql);
-            $result = $prepaparedQuery->execute(array($id))->fetch();
+        try{
+            $sql = "SELECT * FROM {$this->table} WHERE uuid=?";
+            $preparedQuery = $this->connection->prepare($sql);
+            $preparedQuery->execute(array($id));
+            $result = $preparedQuery->fetch();
             return $result;
+        }catch (Exception $e){
+            echo $e->getMessage().''.''.$e->getCode().''.$e->getLine().''.$e->getFile();
+        }
         }
 
         public function insert($data){
             $sql = "INSERT INTO {$this->table} (uuid, user_id, amount, customer_name, customer_email, customer_mobile, success_url, error_url)"."VALUES(?,?,?,?,?,?,?,?)";
             $prepaparedQuery = $this->connection->prepare($sql);
-            $prepaparedQuery->execute(array(
+            if( $prepaparedQuery->execute(array(
                 $data['uuid'],
                 $data['user_id'],
+                $data['amount'],
                 $data['customer_name'],
                 $data['customer_email'],
                 $data['customer_mobile'],
                 $data['success_url'],
                 $data['error_url'],
-            ));
+            )) ){
+                return TRUE;
+            }
+            else{
+                return FALSE;
+            }
         }
 
         public function update($id, $data){
