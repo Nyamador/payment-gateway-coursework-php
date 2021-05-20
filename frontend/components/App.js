@@ -26,9 +26,9 @@ const App = () => {
     const [paymentdata, setPaymentdata] = React.useState();
     const [hasError, setHasError] = React.useState(false);
 
-    
     React.useEffect(async () => {
             const result = await AxiosInstance.get(`links.php?id=${window.location.search.split('=')[1]}`);
+            console.log(result)
             setPaymentdata(result.data);
             setIsLoading(false);
         }, [])

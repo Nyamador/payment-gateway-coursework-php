@@ -6,7 +6,7 @@ const Wrapper = styled.button`
     background: linear-gradient(
     180deg
     ,#50bef9 0,#0793e0);
-    bckground: #44b669;
+    // background: #44b669;
     border-color: #44b6f4;
     border: none;
     border-radius: 2px;
@@ -17,6 +17,7 @@ const Wrapper = styled.button`
     font-weight: bold;
     border-radius: 4px;
     outline: #d3e7fe;
+    cursor: pointer;
     box-shadow: 0px 3px 6px  #cbcbcb87;
 
     &:active {

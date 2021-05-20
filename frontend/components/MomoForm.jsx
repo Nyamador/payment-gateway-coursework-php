@@ -10,21 +10,25 @@ const MomoFormWrapper = styled.div`
 
 
 
-const MomoForm = () => {
+const MomoForm = ({data}) => {
 
     const [momoNumber, setMomoNumber] = useState("")
 
     const handleInputChange = (event) => {
         const number = event.target.value
-        
+        setMomoNumber(number)
         number.length > 10 ? setMomoNumber(number.slice(0,10)) : setMomoNumber(number)
     }
 
+    const handleFormSubmit = () => {
+
+    }
+    
     return (
         <MomoFormWrapper>
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
                 <InputElement value={momoNumber} label="MOBILE NUMBER" placeholder=" eg: 028 234 0943" containerStyle={{marginBottom: '20px'}} changeHandler={handleInputChange}/>
-                <Button>Pay GHC 145.00</Button>
+                <Button type="submit" onClick={() => handleFormSubmit}>Pay GHC {data.amount}</Button>
             </form>
         </MomoFormWrapper>
     );

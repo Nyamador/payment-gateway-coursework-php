@@ -24,7 +24,7 @@ const Label = styled.label`
 `
 
 const Input = styled.input`
-    color: #CBCBCB;
+    color: black;
     outline: none;
     border: none;
     transition: all 4s;
@@ -45,6 +45,7 @@ const InputElement = ({type, value, required, placeholder, id, label, containerS
             <Input name={name} className={isCvvDialogOpen && "cvv_input"} type={type} value={value} required={!required ? true : required} placeholder={placeholder} id={id} 
             {...name === "cc_expiry" && {...getExpiryDateProps({ onChange: changeHandler })} }
             {...name === "cvv" && {...getCVCProps({ onChange: changeHandler })} }
+            onChange={changeHandler}
             />
             
             

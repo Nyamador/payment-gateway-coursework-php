@@ -28,7 +28,7 @@ const LoadingBar = styled(FlexRow)`
     margin: auto;
 `
 
-const CardForm = () => {
+const CardForm = ({data}) => {
     const [cardNumber, setCardNumber] = useState("")
     const [expiryDate, setExpiryDate] = useState("")
     const [cardIssuer, setCardIssuer] = useState(getCreditCardNameByNumber(cardNumber))
@@ -36,6 +36,14 @@ const CardForm = () => {
     const [cvv, setCvv] = useState("")
     const [cvvIsValid, setCvvIsValid] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+
+
+    // const formData = {
+    //     cvv,
+    //     cardNumber,
+    //     expiryData,
+    // }
+
 
 
     // const async fetchData = () => {
@@ -84,7 +92,7 @@ const CardForm = () => {
                         <img src={LoaderIcon}/>
                     </LoadingBar>
                 :
-                <Button disabled={isLoading}>{isLoading ? <LoaderIcon/> : "Pay GHC 145.00"}</Button>
+                <Button type="submit">{isLoading ? <LoaderIcon/> : `Pay GHC ${data.amount}`}</Button>
                 }
             </form>
         </CardFormWrapper>
