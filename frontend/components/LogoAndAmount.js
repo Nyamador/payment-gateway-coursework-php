@@ -28,7 +28,7 @@ const Amount = styled.p`
     font-weight: bold;
 `
 
-const LogoAndAmount = () => {
+const LogoAndAmount = ({data}) => {
     return (
         <Wrapper>
             <FlexRow>
@@ -37,9 +37,9 @@ const LogoAndAmount = () => {
                 <SummarySection>
                     <AmountSection>
                         <Currency>GHC</Currency>
-                        <Amount>145.00</Amount>
+                        <Amount>{data['amount']}</Amount>
                     </AmountSection>
-                        <small className="font-s">selanyamador@gmail.com</small>
+                        <small className="font-s">{data['customer_email']}</small>
                 </SummarySection>
             </FlexRow>
         </Wrapper>

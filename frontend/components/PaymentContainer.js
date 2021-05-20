@@ -22,7 +22,7 @@ const PaymentWrapper = styled(FlexColumn)`
     width: 30%;
     background-color: white;
     margin: auto;
-    min-height: 70%;
+    min-height: 90%;
     border-radius: 4px;
     box-shadow: 0px 0px 7px 6px #c1c1c121;
 `
@@ -63,7 +63,7 @@ const ImageWrapper = styled.span`
 
 
 
-const PaymentContainer = () => {
+const PaymentContainer = ({data}) => {
     const [isMomoActive, setIsMomoActive] = useState(false)
     const [isCardActive, setIsCardActive] = useState(false)
     const [showHowToPay, setShowHowToPay] = useState(true)
@@ -76,11 +76,11 @@ const PaymentContainer = () => {
                 {isCardActive && <SelectedMethodHeader title="Card " img_url={activeCard}/>}
                 {isMomoActive && <SelectedMethodHeader title="MoMo" img_url={activePhone}/>}
             </Header>
-            <LogoAndAmount/>
+            <LogoAndAmount data={data}/>
             
-            {isMomoActive && <MomoForm/>}
+            {isMomoActive && <MomoForm data={data}/>}
 
-            {isCardActive && <CardForm/>}
+            {isCardActive && <CardForm data={data}/>}
         
            {showHowToPay && <HowWouldYouLikeToPay/>}
 
