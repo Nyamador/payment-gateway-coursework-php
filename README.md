@@ -1,7 +1,7 @@
 ## Coventry University Payment Gateway [ PHP Implementation]
 
-This is a php implementation of the Django based payment gateway for the Web API coursework.
-( https://github.com/Nyamador/coventry-payment-backend ).
+This is a php implementation of the Django ( https://github.com/Nyamador/coventry-payment-backend ) version of the payment gateway for the Web API coursework.
+
 
 ### Payment Page UI
 ![Payment Page](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0zwzl9j6v1fmhek2hmnz.png)
